@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Lorem Ipsum"
-date:   2014-08-31 14:36:23
+title:  "我的新博客"
+date:   2016-03-21 12:36:23
 permalink: /first-post.html
 ---
 <span class="image featured"><img src="/images/pic02.jpg" alt=""></span>
