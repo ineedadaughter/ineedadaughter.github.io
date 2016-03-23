@@ -15,9 +15,11 @@ categories: Duis
 
 	}
 
+
 2.判断是否为ipad上运行
 
 	#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
 
 3.能不能只用一个pan手势来代替UISwipegesture的各个方向？
 
@@ -86,21 +88,26 @@ categories: Duis
 	}  
 	} 
 
+
 4.ScrollView莫名其妙不能在viewController划到顶怎么办？
 
 	self.automaticallyAdjustsScrollViewInsets = NO;
+
 
 5.怎么像Safari一样滑动的时候隐藏navigationbar？  	
 
 	navigationController.hidesBarsOnSwipe = Yes; 
 
+
 6.项目没有继承baseViewController，但是现在每个ViewController都要执行一些方法，现在要改怎么办？
 
 	使用<objc/message.h>方法交换啊，骚年.
 
+
 7.array含有不同类型的model时需要排序怎么办？
 
 	使用协议属性啊，小兄弟.
+
 
 8.如何优雅的退出应用程序，就像点击home键一样流畅？
 
@@ -111,12 +118,15 @@ categories: Duis
 	请叫我雷锋（私有方法，慎用）：
 	[[UIApplication sharedApplication] performSelector:@select(suspend)];
 
+
 9.你玩过iMessage么，滑动时的动画是不是印象深刻？
 
 喜欢吗？[看这里](https://github.com/terryworona/messages-ios)。
 
+
 10.ios私有api大全？
 
 你值得拥有，suspend就是我在私有api大全上找到的方法[iphone-private-frameworks](https://github.com/kennytm/iphone-private-frameworks/tree/master) 酷不酷？想不想学？
+
 
 今天就更新到这里吧，下次心情好在更新哦！喜欢就收藏吧
