@@ -1,14 +1,122 @@
 ---
 layout: post
-title:  "Duis in purus"
-date:   2014-09-07 14:36:23
+title:  "关于ios的一些奇怪的问题"
+date:   2016-03-07 14:36:23
 categories: Duis
 ---
-<span class="image featured"><img src="/images/pic01.jpg" alt=""></span>
-Duis in purus sit amet elit ullamcorper venenatis vel a diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dictum quam id ultricies dapibus. Donec rutrum pellentesque nisl, in bibendum erat imperdiet et. Maecenas eros lorem, dignissim in eros ut, consequat eleifend ante. Duis leo tortor, porttitor non ex ut, varius consectetur purus. Mauris vel erat risus. Nam convallis, lorem et tempus efficitur, nulla tortor efficitur sapien, ut pretium nisl turpis at purus. Nulla dui risus, suscipit nec tellus ac, aliquam finibus mi. Suspendisse accumsan, nisl a aliquet hendrerit, massa metus volutpat libero, et mollis lectus mauris et justo. Ut vitae est ut ligula sollicitudin blandit. Quisque egestas eleifend tortor, in finibus ex. Donec non orci quis odio porttitor mattis.
+1.使用asi的老版本框架，request并没有经过释放处理，为避免崩溃
 
-Duis ut blandit lorem. Suspendisse potenti. Donec maximus blandit neque dapibus hendrerit. Praesent dignissim turpis eu nisl varius tempor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur in volutpat felis. Sed eget neque vel risus fermentum maximus a vel arcu. Vivamus non lorem mattis, vehicula metus eu, pellentesque mauris. Nunc fermentum efficitur justo, et rutrum mi finibus non. Sed vehicula eros id elit elementum rhoncus. Nullam quis tellus vitae metus eleifend pharetra eget interdum nulla. Integer sit amet imperdiet urna.
+	 - (void)dealloc  
+	{
 
-Morbi a semper justo, non eleifend elit. Sed nulla nulla, porttitor nec volutpat eu, pulvinar vitae augue. Curabitur tempor quis lorem eget vestibulum. Aenean vel lacinia orci, ac sollicitudin felis. Nunc eros libero, posuere nec massa ac, consectetur sollicitudin elit. Duis tincidunt nunc et neque egestas rhoncus. Curabitur ut euismod lorem, ut rutrum neque. Nullam at sem eros. Nam interdum lectus non cursus viverra.
+	[request setDelegate:nil];
 
-Duis eget magna at arcu tincidunt ultricies. Curabitur in facilisis sem, nec bibendum eros. Nunc fringilla imperdiet diam sed viverra. Vivamus lobortis dignissim mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi laoreet eu diam eu pellentesque. Duis tempus metus urna, vel faucibus ligula pharetra euismod. Donec rhoncus blandit posuere. Mauris mattis dolor est, dictum venenatis augue facilisis sit amet. Ut ante odio, congue eget arcu nec, semper eleifend urna. Donec rutrum pretium odio non pellentesque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam pellentesque nulla at tincidunt ultrices. Donec finibus malesuada magna. Phasellus eget tortor in lectus vehicula viverra sit amet sit amet purus.
+	[request cancel];
+
+	}
+
+2.判断是否为ipad上运行
+
+	#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+3.能不能只用一个pan手势来代替UISwipegesture的各个方向？
+
+	 - (void)pan:(UIPanGestureRecognizer *)sender  
+	{  
+	typedef NS_ENUM(NSUInteger, UIPanGestureRecognizerDirection) {  
+	    UIPanGestureRecognizerDirectionUndefined,  
+	    UIPanGestureRecognizerDirectionUp,  
+	    UIPanGestureRecognizerDirectionDown,  
+	    UIPanGestureRecognizerDirectionLeft,  
+	    UIPanGestureRecognizerDirectionRight  
+	};  
+	static UIPanGestureRecognizerDirection direction = UIPanGestureRecognizerDirectionUndefined;  
+	switch (sender.state) {  
+	    case UIGestureRecognizerStateBegan: {  
+	        if (direction == UIPanGestureRecognizerDirectionUndefined) {  
+	            CGPoint velocity = [sender velocityInView:recognizer.view];  
+	            BOOL isVerticalGesture = fabs(velocity.y) > fabs(velocity.x);  
+	            if (isVerticalGesture) {  
+	                if (velocity.y > 0) {  
+	                    direction = UIPanGestureRecognizerDirectionDown;  
+	                } else {  
+	                    direction = UIPanGestureRecognizerDirectionUp;  
+	                }  
+	            }  
+	            else {  
+	                if (velocity.x > 0) {  
+	                    direction = UIPanGestureRecognizerDirectionRight;  
+	                } else {  
+	                    direction = UIPanGestureRecognizerDirectionLeft;  
+	                }  
+	            }  
+	        }  
+	        break;  
+	    }  
+	    case UIGestureRecognizerStateChanged: {  
+	        switch (direction) {  
+	            case UIPanGestureRecognizerDirectionUp: {  
+	                [self handleUpwardsGesture:sender];  
+	                break;  
+	            }  
+	            case UIPanGestureRecognizerDirectionDown: {  
+	                [self handleDownwardsGesture:sender];  
+	                break;  
+	            }  
+	            case UIPanGestureRecognizerDirectionLeft: {  
+	                [self handleLeftGesture:sender];  
+	                break;  
+	            }  
+	            case UIPanGestureRecognizerDirectionRight: {  
+	                [self handleRightGesture:sender];  
+	                break;  
+	            }  
+	            default: {  
+	                break;  
+	            }  
+	        }  
+	        break;  
+	    }  
+	    case UIGestureRecognizerStateEnded: {  
+	        direction = UIPanGestureRecognizerDirectionUndefined;     
+	        break;  
+	    }  
+	    default:  
+	        break;  
+	}  
+	} 
+
+4.ScrollView莫名其妙不能在viewController划到顶怎么办？
+
+	self.automaticallyAdjustsScrollViewInsets = NO;
+
+5.怎么像Safari一样滑动的时候隐藏navigationbar？  	
+
+	navigationController.hidesBarsOnSwipe = Yes; 
+
+6.项目没有继承baseViewController，但是现在每个ViewController都要执行一些方法，现在要改怎么办？
+
+	使用<objc/message.h>方法交换啊，骚年.
+
+7.array含有不同类型的model时需要排序怎么办？
+
+	使用协议属性啊，小兄弟.
+
+8.如何优雅的退出应用程序，就像点击home键一样流畅？
+
+	不使用
+	exit(0);
+	也不用
+	[[UIApplication sharedApplication] terminateWithSuccess];
+	请叫我雷锋（私有方法，慎用）：
+	[[UIApplication sharedApplication] performSelector:@select(suspend)];
+
+9.你玩过iMessage么，滑动时的动画是不是印象深刻？
+
+喜欢吗？[看这里](https://github.com/terryworona/messages-ios)。
+
+10.ios私有api大全？
+
+你值得拥有，suspend就是我在私有api大全上找到的方法[iphone-private-frameworks](https://github.com/kennytm/iphone-private-frameworks/tree/master) 酷不酷？想不想学？
+
+今天就更新到这里吧，下次心情好在更新哦！喜欢就收藏吧
