@@ -129,4 +129,9 @@ categories: Duis
 你值得拥有，suspend就是我在私有api大全上找到的方法[iphone-private-frameworks](https://github.com/kennytm/iphone-private-frameworks/tree/master) 酷不酷？想不想学？
 
 
+11.延长启动时间，让启动页停留更久一点吧
+
+	在appdelegate中加载window时添加：
+	[NSThread sleepForTimeInterval:3.0];
+
 今天就更新到这里吧，下次心情好在更新哦！喜欢就收藏吧
