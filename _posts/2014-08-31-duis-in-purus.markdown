@@ -134,4 +134,4 @@ categories: Duis
 	在appdelegate中加载window时添加：
 	[NSThread sleepForTimeInterval:3.0];
 
-今天就更新到这里吧，下次心情好在更新哦！喜欢就收藏吧
+write the code , change the world!
