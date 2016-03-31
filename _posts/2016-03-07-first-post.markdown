@@ -2,7 +2,7 @@
 layout: post
 title:  "web交互"
 date:   2016-03-31 12:36:23
-permalink: /first-post.html
+categories: Duis
 ---
 
 分享一个调用js代码监听webView上的图片，超链接点击效果：
