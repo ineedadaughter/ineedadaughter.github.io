@@ -134,4 +134,14 @@ categories: Duis
 	在appdelegate中加载window时添加：
 	[NSThread sleepForTimeInterval:3.0];
 
+
+12.如何获取当前画布的颜色？
+	UIGraphicsBeginImageContext(drawBgView.bounds.size);
+	// get the image
+	[drawBgView.layer renderInContext:UIGraphicsGetCurrentContext()];
+	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+
+	self.drawView.currentColor = [UIColor colorWithPatternImage:image];
+
 write the code , change the world!
