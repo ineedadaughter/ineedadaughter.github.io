@@ -2,7 +2,6 @@
 layout: post
 title:  "给瀑布流添加header"
 date:   2015-03-21 12:36:23
-permalink: /first-post.html
 ---
 瀑布流UICollectionView自从ios6.0更新以来就一直备受瞩目，作为tableview 的兄弟，怎么能没有headerView呢，两个办法，第一个就是最常见的注册头视图
 	
