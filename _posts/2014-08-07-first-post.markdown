@@ -2,7 +2,6 @@
 layout: post
 title:  "xcode各版本官方下载"
 date:   2015-03-21 12:36:23
-permalink: /first-post.html
 ---
 XcodeGhost前段时间影响，闹得也是沸沸扬扬，苹果官方Xcode下载页面更新之后，查找Xcode历史版本也让人摸不着头脑了，特整理各版本下载地址：
 
