@@ -17,3 +17,5 @@ XcodeGhost前段时间影响，闹得也是沸沸扬扬，苹果官方Xcode下�
      5.1.1: https://developer.apple.com/devcenter/download.action?path=/developer_tools/xcode_5.1.1/xcode_5.1.1.dmg
      5.0.2: https://developer.apple.com/devcenter/download.action?path=/developer_tools/xcode_5.0.2/xcode_5.0.2.dmg
     
+	苹果版本更新，以上地址无效，新地址为：
+    https://developer.apple.com/downloads/
