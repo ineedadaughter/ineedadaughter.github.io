@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "iOS开发静态库"
-date:   2016-03-21 12:36:23
+date:   2016-04-07 12:36:23
 permalink: /first-post.html
 ---
 .a文件
