@@ -11,7 +11,7 @@
 
 	body, #skel-layers-wrapper {
 		background: #f3f6fa;
-		color:yellow;
+		color:black;
 	}
 
 	body.is-loading * {
