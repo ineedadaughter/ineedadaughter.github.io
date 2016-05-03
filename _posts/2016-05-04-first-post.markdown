@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "在非越狱的iPhone 6 (iOS 8.1.3) 上进行钓鱼攻击 (盗取App Store密码) (转)"
-date:   2016-05-04 10:36:23
+date:   2016-04-29 10:36:23
 ---
 
 我们去年3,4月份在iOS还是7.0的时候就发现了一个能在非越狱的ios设备上进行钓鱼的攻击方法 (可以盗取Apple id的密码, gmail的密码等)，很早就报给了apple (Follow-up id: 609680831)，到现在apple也没有修复。为了紧跟Project Zero的潮流（90天的漏洞披露策略），现在打算公开demo和细节： 
