@@ -144,4 +144,19 @@ categories: Duis
 
 	self.drawView.currentColor = [UIColor colorWithPatternImage:image];
 
-write the code , change the world!
+13.touchsBegan无法响应怎么办？
+	
+添加分类或者重写父类，添加下一级别响应链：
+    - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self nextResponder] touchesBegan:touches withEvent:event];
+    [super touchesBegan:touches withEvent:event];
+    }
+    -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self nextResponder] touchesMoved:touches withEvent:event];
+    [super touchesMoved:touches withEvent:event];
+    }
+    
+    - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self nextResponder] touchesEnded:touches withEvent:event];
+    [super touchesEnded:touches withEvent:event];
+    }
