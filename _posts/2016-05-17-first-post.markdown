@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " 个人应用广告显示框架"
-date:   2016-05-18 13:36:23
+date:   2016-05-17 13:36:23
 ---
 1.轻量级，只有两个文件（ADViewController，UIViewController+present）；
 
